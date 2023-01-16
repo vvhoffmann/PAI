@@ -10,12 +10,14 @@ if (isset($_GET['id'])) {
 
     if (isset($_POST['zapisz'])) {
         // obsługa edycji rekordu
-        $stmt = $pdo->prepare("UPDATE samochody SET marka = :marka, model = :model, rok = :rok, typ_silnika = :typ_silnika WHERE id = :id");
+        $stmt = $pdo->prepare("UPDATE samochody SET marka = :marka, model = :model, rok = :rok, typ_silnika = :typ_silnika, pojemnosc = :pojemnosc, liczba_poduszek = :liczba_poduszek WHERE id = :id");
         $wynik = $stmt->execute([
             'marka' => $_POST['marka'],
             'model' => $_POST['model'],
             'rok' => $_POST['rok'],
             'typ_silnika' => $_POST['typ_silnika'],
+            'pojemnosc' => $_POST['pojemnosc'],
+            'liczba_poduszek' => $_POST['liczba_poduszek'],
             'id' => $id,
         ]);
 
@@ -72,6 +74,22 @@ if (isset($_GET['id'])) {
                     <select name="typ_silnika">
                         <option value="benzyna" <?= ($wiersz['typ_silnika'] ?? '') == 'benzyna' ? 'selected' : '' ?>>benzyna</option>
                         <option value="diesel" <?= ($wiersz['typ_silnika'] ?? '') == 'diesel' ? 'selected' : '' ?>>diesel</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Pojemność</td>
+                <td><input type="text" name="pojemnosc" /></td>
+            </tr>
+            <tr>
+                <td>Liczba poduszek</td>
+                <td>
+                    <select name="liczba_poduszek">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                        <option value="8">8</option>
                     </select>
                 </td>
             </tr>

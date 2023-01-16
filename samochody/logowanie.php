@@ -17,7 +17,6 @@ if (isset($_POST['zaloguj']) && $incorrectLogin<3) {
 	} else {
 		$komunikat = "Wprowadzono zły login lub hasło.";
         $incorrectLogin = $incorrectLogin +1;
-        echo $incorrectLogin;
 	}
 }
 ?>

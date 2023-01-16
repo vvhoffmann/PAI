@@ -7,12 +7,14 @@ sprawdzLogowanie();
 if (isset($_POST['dodaj'])) {
     $pdo = polacz();
 
-    $stmt = $pdo->prepare("INSERT INTO samochody (marka, model, rok, typ_silnika) VALUES (:marka, :model, :rok, :typ_silnika)");
+    $stmt = $pdo->prepare("INSERT INTO samochody (marka, model, rok, typ_silnika, pojemnosc, liczba_poduszek) VALUES (:marka, :model, :rok, :typ_silnika, :pojemnosc, :liczba_poduszek)");
     $wynik = $stmt->execute([
         'marka' => $_POST['marka'],
         'model' => $_POST['model'],
         'rok' => $_POST['rok'],
         'typ_silnika' => $_POST['typ_silnika'],
+        'pojemnosc' => $_POST['pojemnosc'],
+        'liczba_poduszek' => $_POST['liczba_poduszek'],
     ]);
 
     if ($wynik == true) {
@@ -52,6 +54,22 @@ if (isset($_POST['dodaj'])) {
                     <select name="typ_silnika">
                         <option value="benzyna">benzyna</option>
                         <option value="diesel">diesel</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Pojemność</td>
+                <td><input type="text" name="pojemnosc" /></td>
+            </tr>
+            <tr>
+                <td>Liczba poduszek</td>
+                <td>
+                    <select name="liczba_poduszek">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                        <option value="8">8</option>
                     </select>
                 </td>
             </tr>
