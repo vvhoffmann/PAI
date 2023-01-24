@@ -1,8 +1,8 @@
 <?php
-$incorrectLogin = 0;
+
 session_start();
 
-if (isset($_POST['zaloguj']) && $incorrectLogin<3) {
+if (isset($_POST['zaloguj'])) {
 	$pdo = new PDO('mysql:host=localhost;dbname=test', 'root', '');
 
 	$stmt = $pdo->prepare("SELECT * FROM uzytkownicy WHERE login = :login AND haslo = :haslo");
@@ -16,7 +16,6 @@ if (isset($_POST['zaloguj']) && $incorrectLogin<3) {
 		exit();
 	} else {
 		$komunikat = "Wprowadzono zły login lub hasło.";
-        $incorrectLogin = $incorrectLogin +1;
 	}
 }
 ?>

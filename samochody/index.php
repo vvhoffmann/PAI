@@ -48,7 +48,7 @@ foreach ($pdo->query('SELECT * FROM samochody ORDER BY marka, model') as $wiersz
 				<td>
 					<a href="szczegoly.php?id=<?= $d['id'] ?>">szczegóły</a>
 					<a href="edytuj.php?id=<?= $d['id'] ?>">edytuj</a>
-					<a href="usun.php?id=<?= $d['id'] ?>">usuń</a>
+					<input type="button" value= "usuń" onclick="if(window.confirm('Czy na pewno usunąć ?')){window.location='usun.php?id=<?= $d['id'] ?>';}">
 				</td>
 			</tr>
 		<?php endforeach; ?>
